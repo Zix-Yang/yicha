@@ -1,0 +1,253 @@
+[
+  {
+    "id": "q001",
+    "question": "What do users say about product quality?",
+    "expected_question_type": "sentiment_query",
+    "expected_aspect": "quality",
+    "expected_filter": {
+      "language": "en"
+    },
+    "relevant_review_ids": [],
+    "reference_answer": "Users have mixed opinions on product quality, with some praising durability while others report defects.",
+    "expected_tool_calls": [
+      { "tool": "queryRewrite", "required_params": ["question"] },
+      { "tool": "embedding", "required_params": ["text"] },
+      { "tool": "qdrantSearch", "required_params": ["vector", "topK"] },
+      { "tool": "reranker", "required_params": ["query", "candidates"] }
+    ]
+  },
+  {
+    "id": "q002",
+    "question": "西班牙语差评里用户主要抱怨什么？",
+    "expected_question_type": "sentiment_query",
+    "expected_aspect": "general",
+    "expected_filter": {
+      "language": "es",
+      "label_text": "negative"
+    },
+    "relevant_review_ids": [],
+    "reference_answer": "",
+    "expected_tool_calls": [
+      { "tool": "queryRewrite", "required_params": ["question"] },
+      { "tool": "embedding", "required_params": ["text"] },
+      { "tool": "qdrantSearch", "required_params": ["vector", "topK"] },
+      { "tool": "reranker", "required_params": ["query", "candidates"] }
+    ]
+  },
+  {
+    "id": "q003",
+    "question": "Are there any complaints about shipping speed?",
+    "expected_question_type": "sentiment_query",
+    "expected_aspect": "shipping",
+    "expected_filter": {},
+    "relevant_review_ids": [],
+    "reference_answer": "",
+    "expected_tool_calls": [
+      { "tool": "queryRewrite", "required_params": ["question"] },
+      { "tool": "embedding", "required_params": ["text"] },
+      { "tool": "qdrantSearch", "required_params": ["vector", "topK"] },
+      { "tool": "reranker", "required_params": ["query", "candidates"] }
+    ]
+  },
+  {
+    "id": "q004",
+    "question": "这个产品的耐用性怎么样？",
+    "expected_question_type": "product_review",
+    "expected_aspect": "durability",
+    "expected_filter": {
+      "language": "zh"
+    },
+    "relevant_review_ids": [],
+    "reference_answer": "",
+    "expected_tool_calls": [
+      { "tool": "queryRewrite", "required_params": ["question"] },
+      { "tool": "embedding", "required_params": ["text"] },
+      { "tool": "qdrantSearch", "required_params": ["vector", "topK"] },
+      { "tool": "reranker", "required_params": ["query", "candidates"] }
+    ]
+  },
+  {
+    "id": "q005",
+    "question": "What are positive reviews saying about customer service?",
+    "expected_question_type": "sentiment_query",
+    "expected_aspect": "service",
+    "expected_filter": {
+      "label_text": "positive"
+    },
+    "relevant_review_ids": [],
+    "reference_answer": "",
+    "expected_tool_calls": [
+      { "tool": "queryRewrite", "required_params": ["question"] },
+      { "tool": "embedding", "required_params": ["text"] },
+      { "tool": "qdrantSearch", "required_params": ["vector", "topK"] },
+      { "tool": "reranker", "required_params": ["query", "candidates"] }
+    ]
+  },
+  {
+    "id": "q006",
+    "question": "¿Qué dicen los usuarios sobre el precio del producto?",
+    "expected_question_type": "product_review",
+    "expected_aspect": "price",
+    "expected_filter": {
+      "language": "es"
+    },
+    "relevant_review_ids": [],
+    "reference_answer": "",
+    "expected_tool_calls": [
+      { "tool": "queryRewrite", "required_params": ["question"] },
+      { "tool": "embedding", "required_params": ["text"] },
+      { "tool": "qdrantSearch", "required_params": ["vector", "topK"] },
+      { "tool": "reranker", "required_params": ["query", "candidates"] }
+    ]
+  },
+  {
+    "id": "q007",
+    "question": "Do negative reviews mention packaging issues?",
+    "expected_question_type": "sentiment_query",
+    "expected_aspect": "general",
+    "expected_filter": {
+      "label_text": "negative"
+    },
+    "relevant_review_ids": [],
+    "reference_answer": "",
+    "expected_tool_calls": [
+      { "tool": "queryRewrite", "required_params": ["question"] },
+      { "tool": "embedding", "required_params": ["text"] },
+      { "tool": "qdrantSearch", "required_params": ["vector", "topK"] },
+      { "tool": "reranker", "required_params": ["query", "candidates"] }
+    ]
+  },
+  {
+    "id": "q008",
+    "question": "用户对这款产品的价格满意吗？",
+    "expected_question_type": "sentiment_query",
+    "expected_aspect": "price",
+    "expected_filter": {
+      "language": "zh"
+    },
+    "relevant_review_ids": [],
+    "reference_answer": "",
+    "expected_tool_calls": [
+      { "tool": "queryRewrite", "required_params": ["question"] },
+      { "tool": "embedding", "required_params": ["text"] },
+      { "tool": "qdrantSearch", "required_params": ["vector", "topK"] },
+      { "tool": "reranker", "required_params": ["query", "candidates"] }
+    ]
+  },
+  {
+    "id": "q009",
+    "question": "How long does the product last according to reviews?",
+    "expected_question_type": "product_review",
+    "expected_aspect": "durability",
+    "expected_filter": {},
+    "relevant_review_ids": [],
+    "reference_answer": "",
+    "expected_tool_calls": [
+      { "tool": "queryRewrite", "required_params": ["question"] },
+      { "tool": "embedding", "required_params": ["text"] },
+      { "tool": "qdrantSearch", "required_params": ["vector", "topK"] },
+      { "tool": "reranker", "required_params": ["query", "candidates"] }
+    ]
+  },
+  {
+    "id": "q010",
+    "question": "¿Hay reseñas positivas sobre la calidad del material?",
+    "expected_question_type": "product_review",
+    "expected_aspect": "quality",
+    "expected_filter": {
+      "language": "es",
+      "label_text": "positive"
+    },
+    "relevant_review_ids": [],
+    "reference_answer": "",
+    "expected_tool_calls": [
+      { "tool": "queryRewrite", "required_params": ["question"] },
+      { "tool": "embedding", "required_params": ["text"] },
+      { "tool": "qdrantSearch", "required_params": ["vector", "topK"] },
+      { "tool": "reranker", "required_params": ["query", "candidates"] }
+    ]
+  },
+  {
+    "id": "q011",
+    "question": "What do English reviews say about value for money?",
+    "expected_question_type": "product_review",
+    "expected_aspect": "price",
+    "expected_filter": {
+      "language": "en"
+    },
+    "relevant_review_ids": [],
+    "reference_answer": "",
+    "expected_tool_calls": [
+      { "tool": "queryRewrite", "required_params": ["question"] },
+      { "tool": "embedding", "required_params": ["text"] },
+      { "tool": "qdrantSearch", "required_params": ["vector", "topK"] },
+      { "tool": "reranker", "required_params": ["query", "candidates"] }
+    ]
+  },
+  {
+    "id": "q012",
+    "question": "用户对售后服务有什么反馈？",
+    "expected_question_type": "product_review",
+    "expected_aspect": "service",
+    "expected_filter": {
+      "language": "zh"
+    },
+    "relevant_review_ids": [],
+    "reference_answer": "",
+    "expected_tool_calls": [
+      { "tool": "queryRewrite", "required_params": ["question"] },
+      { "tool": "embedding", "required_params": ["text"] },
+      { "tool": "qdrantSearch", "required_params": ["vector", "topK"] },
+      { "tool": "reranker", "required_params": ["query", "candidates"] }
+    ]
+  },
+  {
+    "id": "q013",
+    "question": "Are there complaints about the product breaking easily?",
+    "expected_question_type": "sentiment_query",
+    "expected_aspect": "durability",
+    "expected_filter": {
+      "label_text": "negative"
+    },
+    "relevant_review_ids": [],
+    "reference_answer": "",
+    "expected_tool_calls": [
+      { "tool": "queryRewrite", "required_params": ["question"] },
+      { "tool": "embedding", "required_params": ["text"] },
+      { "tool": "qdrantSearch", "required_params": ["vector", "topK"] },
+      { "tool": "reranker", "required_params": ["query", "candidates"] }
+    ]
+  },
+  {
+    "id": "q014",
+    "question": "¿Los usuarios recomiendan este producto?",
+    "expected_question_type": "general",
+    "expected_aspect": "general",
+    "expected_filter": {
+      "language": "es"
+    },
+    "relevant_review_ids": [],
+    "reference_answer": "",
+    "expected_tool_calls": [
+      { "tool": "queryRewrite", "required_params": ["question"] },
+      { "tool": "embedding", "required_params": ["text"] },
+      { "tool": "qdrantSearch", "required_params": ["vector", "topK"] },
+      { "tool": "reranker", "required_params": ["query", "candidates"] }
+    ]
+  },
+  {
+    "id": "q015",
+    "question": "What is the overall sentiment of reviews?",
+    "expected_question_type": "general",
+    "expected_aspect": "general",
+    "expected_filter": {},
+    "relevant_review_ids": [],
+    "reference_answer": "",
+    "expected_tool_calls": [
+      { "tool": "queryRewrite", "required_params": ["question"] },
+      { "tool": "embedding", "required_params": ["text"] },
+      { "tool": "qdrantSearch", "required_params": ["vector", "topK"] },
+      { "tool": "reranker", "required_params": ["query", "candidates"] }
+    ]
+  }
+]

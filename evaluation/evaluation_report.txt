@@ -1,0 +1,477 @@
+╔══════════════════════════════════════════════════════════╗
+║  YICHA RAG Evaluation Report                             ║
+║  2026-06-04T22:20:27.448Z                                ║
+╚══════════════════════════════════════════════════════════╝
+
+────────────────────────────────────────────────────────────
+META
+────────────────────────────────────────────────────────────
+  Total questions       : 15
+  Duration              : 1501.52s
+  RAG endpoint          : http://localhost:3000
+
+────────────────────────────────────────────────────────────
+CLASSIFICATION METRICS
+────────────────────────────────────────────────────────────
+  Question type accuracy : 53.3%
+  Aspect accuracy        : 80.0%
+  Macro F1 (question)    : 37.9%
+  Macro F1 (aspect)      : 83.8%
+
+────────────────────────────────────────────────────────────
+RETRIEVAL METRICS  (only cases with relevant_review_ids)
+────────────────────────────────────────────────────────────
+  No cases with relevant_review_ids — skipped.
+  Tip: populate relevant_review_ids in testset.json to enable.
+
+────────────────────────────────────────────────────────────
+GENERATION METRICS — RAG vs LLM Direct
+────────────────────────────────────────────────────────────
+  Avg confidence (RAG)   : 54.3%
+  Has answer rate        : 60.0%
+  Has evidence rate      : 60.0%
+  ROUGE-L  RAG           : 0.0759
+  ROUGE-L  LLM Direct    : 0.1096
+
+────────────────────────────────────────────────────────────
+TOOL CALLING METRICS
+────────────────────────────────────────────────────────────
+  Tool call success rate  : 90.0%
+  Tool selection accuracy : 100.0%
+  Parameter accuracy      : 100.0%
+
+────────────────────────────────────────────────────────────
+END-TO-END
+────────────────────────────────────────────────────────────
+  RAG success rate       : 53.3%
+  RAG avg latency        : 82549ms
+  LLM Direct avg latency : 7069ms
+
+────────────────────────────────────────────────────────────
+PER-CASE RESULTS
+────────────────────────────────────────────────────────────
+
+  [~] q001  What do users say about product quality?
+      Question type : expected=sentiment_query  got=sentiment_query  ✓
+      Aspect        : expected=quality  got=quality  ✓
+      Filter match  : ✓
+      Evidence      : 0 reviews  |  Confidence: 50.0%  |  Latency: 121780ms
+      ROUGE-L       : RAG=0.0759  LLM Direct=0.1096
+      Rewritten     : product quality reviews
+
+      ┌─ RAG Answer (121780ms) ────────────────────
+      │  { "answer": "Users report significant issues with product quality,
+      │  including defects, poor materials, and rapid deterioration. For
+      │  example, one user stated the product was 'defective and unsafe. Poor
+      │  materials, damaged after only weeks,' while another mentioned the item
+      │  'fell apart like other reviewers have complained on the third cookie.'
+      │  Additional complaints include fuzzy materials that discolored quickly
+      └────────────────────────────────────────
+
+      ┌─ LLM Direct Answer (6708ms) ───────────────
+      │  Users often share feedback about product quality, highlighting factors
+      │  like performance, durability, and customer service. Positive reviews
+      │  might mention reliability, functionality, or satisfaction with the
+      │  product's features. Negative feedback could address issues such as
+      │  defects, poor craftsmanship, or inadequate customer support. Overall,
+      │  opinions vary by product type and individual experiences, but common
+      └────────────────────────────────────────
+
+  [~] q002  西班牙语差评里用户主要抱怨什么？
+      Question type : expected=sentiment_query  got=sentiment_query  ✓
+      Aspect        : expected=general  got=general  ✓
+      Filter match  : ✓
+      Evidence      : 0 reviews  |  Confidence: 0.0%  |  Latency: 37454ms
+      Rewritten     : Spanish negative Amazon reviews main complaints
+
+      ┌─ RAG Answer (37454ms) ────────────────────
+      │  No relevant reviews found to answer your question.
+      │  Summary: No results found.
+      └────────────────────────────────────────
+
+      ┌─ LLM Direct Answer (7664ms) ───────────────
+      │  在西班牙语差评中，用户通常会抱怨以下几点： 
+1. **发音困难**（如元音/辅音混淆、重音位置）； 
+2.
+      │  **语法错误**（如时态、语态、介词使用）； 
+3. **词汇不准确**（如词性误用、词义混淆）； 
+4.
+      │  **文化差异**（如俚语、习惯表达不符合本地习惯）； 
+5. **服务体验**（如沟通不畅、态度不佳）。
+      │  
+
+这些抱怨集中在语言学习或使用中的实际困难，而非语言本身。
+      └────────────────────────────────────────
+
+  [✓] q003  Are there any complaints about shipping speed?
+      Question type : expected=sentiment_query  got=sentiment_query  ✓
+      Aspect        : expected=shipping  got=shipping  ✓
+      Filter match  : ✓
+      Evidence      : 3 reviews  |  Confidence: 95.0%  |  Latency: 83835ms
+      Rewritten     : complaints about shipping speed
+
+      ┌─ RAG Answer (83835ms) ────────────────────
+      │  Yes, there are complaints about shipping speed. Review 1 mentions the
+      │  item was not shipped by the promised day, with delays spanning
+      │  multiple days. Review 2 states the item 'did not arrive on time' and
+      │  notes poor customer service response. Review 5 highlights a 10-day
+      │  delivery window that was not met.
+      │  Summary: Multiple reviews cite delays in shipping speed and delivery timing issues.
+      └────────────────────────────────────────
+
+      ┌─ LLM Direct Answer (7213ms) ───────────────
+      │  Yes, complaints about shipping speed are common, especially for
+      │  international orders. Factors like distance, weather, carrier
+      │  efficiency, and logistics challenges can affect delivery times.
+      │  Customers often cite delays due to unforeseen circumstances (e.g.,
+      │  storms, customs issues) or slower processing times. Many companies
+      │  provide tracking and estimated delivery timelines to manage
+      └────────────────────────────────────────
+
+      Evidence reviews:
+        [EN][negative] en_0206383_0
+          "Ordered 2 they shipped 1 promised by certain day, then the next day, then the next day"
+        [EN][negative] en_0175780_0
+          "this item did not arrive on time"
+        [EN][negative] en_0761924_0
+          "Had 10 days to deliver still not here"
+
+  [~] q004  这个产品的耐用性怎么样？
+      Question type : expected=product_review  got=general  ✗
+      Aspect        : expected=durability  got=general  ✗
+      Filter match  : ✗
+      Evidence      : 3 reviews  |  Confidence: 0.0%  |  Latency: 117459ms
+      Rewritten     : 
+
+      ┌─ RAG Answer (117459ms) ────────────────────
+      │  The provided reviews do not specifically address the product's
+      │  durability. They focus on issues like water quality, usability, and
+      │  overall satisfaction but do not mention long-term durability.
+      │  Summary: No reviews discuss the product's durability.
+      └────────────────────────────────────────
+
+      ┌─ LLM Direct Answer (6711ms) ───────────────
+      │  产品的耐用性取决于其材质、制造工艺和使用环境。通常，优质产品会采用高强度材料（如不锈钢、工程塑料）并确保结构稳固。长期使用需避免极端温度、潮湿或腐蚀性环境，定期维护可延长寿命。具体表现需根据产品类型（如电子设备、家具或机械）而定。
+      └────────────────────────────────────────
+
+      Evidence reviews:
+        [EN][negative] en_0989762_1
+          "Water tastes and smells like dirt!"
+        [EN][negative] en_0252403_1
+          "Order at your own risk"
+        [EN][negative] en_0016438_0
+          "unhappy"
+
+  [~] q005  What are positive reviews saying about customer se…
+      Question type : expected=sentiment_query  got=sentiment_query  ✓
+      Aspect        : expected=service  got=service  ✓
+      Filter match  : ✓
+      Evidence      : 0 reviews  |  Confidence: 0.0%  |  Latency: 59842ms
+      Rewritten     : positive customer service reviews
+
+      ┌─ RAG Answer (59842ms) ────────────────────
+      │  No relevant reviews found to answer your question.
+      │  Summary: No results found.
+      └────────────────────────────────────────
+
+      ┌─ LLM Direct Answer (6951ms) ───────────────
+      │  Positive reviews often highlight aspects such as being treated with
+      │  respect, resolving issues quickly, receiving effective solutions, and
+      │  feeling valued. Customers also appreciate when agents demonstrate
+      │  empathy, provide clear communication, and go above and beyond to
+      │  ensure satisfaction. Additionally, successful problem resolution and a
+      │  positive overall experience are common themes.
+      └────────────────────────────────────────
+
+  [✓] q006  ¿Qué dicen los usuarios sobre el precio del produc…
+      Question type : expected=product_review  got=general  ✗
+      Aspect        : expected=price  got=general  ✗
+      Filter match  : ✗
+      Evidence      : 1 reviews  |  Confidence: 95.0%  |  Latency: 117811ms
+      Rewritten     : {
+  "rewritten_queries": ["Opiniones de los usuarios sobre el precio del product
+
+      ┌─ RAG Answer (117811ms) ────────────────────
+      │  Los usuarios mencionan que el precio del producto es elevado,
+      │  especialmente en combinación con problemas de funcionalidad. Por
+      │  ejemplo, uno de los comentarios indica: 'Price is expensive and very
+      │  hard to use and also doesn’t even work. Don’t bother buying this a
+      │  waste of money' (Review 5).
+      │  Summary: Los usuarios consideran que el precio es elevado y lo combinan con críticas sobre la calidad y funci
+      └────────────────────────────────────────
+
+      ┌─ LLM Direct Answer (7460ms) ───────────────
+      │  Los comentarios sobre el precio de un producto varían según las
+      │  opiniones de los usuarios, ya que la percepción de valor puede estar
+      │  influenciada por factores como la calidad, la cantidad de opciones
+      │  disponibles, el mercado y las expectativas del consumidor. Algunos
+      │  podrían considerar el precio competitivo o asequible, mientras que
+      │  otros lo vean demasiado elevado. La valoración depende de cómo se
+      └────────────────────────────────────────
+
+      Evidence reviews:
+        [EN][negative] en_0231298_0
+          "Price is expensive and very hard to use and also doesn’t even work."
+
+  [✓] q007  Do negative reviews mention packaging issues?
+      Question type : expected=sentiment_query  got=sentiment_query  ✓
+      Aspect        : expected=general  got=general  ✓
+      Filter match  : ✓
+      Evidence      : 4 reviews  |  Confidence: 95.0%  |  Latency: 81428ms
+      Rewritten     : negative reviews packaging issues
+
+      ┌─ RAG Answer (81428ms) ────────────────────
+      │  Yes, multiple negative reviews explicitly mention packaging issues.
+      │  For example, one reviewer stated 'Packing was horrible, they packed it
+      │  in a bag. By the time I received it, it was crushed.' Another noted
+      │  'Very poorly packaged and handled during shipping' leading to a coffee
+      │  pack bursting open. Poor packing is also cited as the cause of broken
+      │  stems and missing items in the shipment.
+      │  Summary: Negative reviews frequently cite packaging issues causing damage or missing items.
+      └────────────────────────────────────────
+
+      ┌─ LLM Direct Answer (6299ms) ───────────────
+      │  Negative reviews may or may not mention packaging issues, depending on
+      │  the reviewer's experience. If packaging is a specific concern, it
+      │  might be highlighted; otherwise, it could be overlooked. However, the
+      │  presence of packaging issues in reviews is not guaranteed and depends
+      │  on the individual's perspective. Always check specific reviews for
+      │  direct mentions.
+      └────────────────────────────────────────
+
+      Evidence reviews:
+        [EN][negative] en_0092612_0
+          "Packing was horrible, they packed it in a bag. By the time I received it, it was crushed."
+        [EN][negative] en_0950622_0
+          "Very poorly packaged and handled during shipping. One of the packs of coffee had busted open"
+        [EN][negative] en_0832890_0
+          "Stems were broken due to poor packing"
+
+  [~] q008  用户对这款产品的价格满意吗？
+      Question type : expected=sentiment_query  got=sentiment_query  ✓
+      Aspect        : expected=price  got=price  ✓
+      Filter match  : ✓
+      Evidence      : 0 reviews  |  Confidence: 0.0%  |  Latency: 30986ms
+      Rewritten     : product price satisfaction reviews
+
+      ┌─ RAG Answer (30986ms) ────────────────────
+      │  No relevant reviews found to answer your question.
+      │  Summary: No results found.
+      └────────────────────────────────────────
+
+      ┌─ LLM Direct Answer (7330ms) ───────────────
+      │  根据市场调研和成本因素，产品定价合理，用户反馈总体满意。具体评价需参考实际使用体验和评论。
+      └────────────────────────────────────────
+
+  [✓] q009  How long does the product last according to review…
+      Question type : expected=product_review  got=sentiment_query  ✗
+      Aspect        : expected=durability  got=durability  ✓
+      Filter match  : ✓
+      Evidence      : 5 reviews  |  Confidence: 95.0%  |  Latency: 91306ms
+      Rewritten     : product durability reviews
+
+      ┌─ RAG Answer (91306ms) ────────────────────
+      │  According to reviews, the product does not last long. One review
+      │  mentions peaches popping after 'a few mins of inflating'
+      │  (en_0215301_0), another states glass shattered 'only a bit over a
+      │  month' of sporadic use (en_0152718_0), and another notes a mower's
+      │  motor burned out after 'a months use' (en_0943934_0). A product
+      │  damaged after 'a few weeks' in the dishwasher (en_0430092_0) and
+      │  Summary: Reviews consistently report the product failing within weeks to months.
+      └────────────────────────────────────────
+
+      ┌─ LLM Direct Answer (7729ms) ───────────────
+      │  The lifespan of a product cannot be determined solely from reviews.
+      │  Without knowing the specific product, it's impossible to provide an
+      │  accurate answer. For general guidance, electronics like smartphones
+      │  typically last 3-5 years, while mechanical items may vary based on
+      │  usage and quality. Always check the product's specifications or
+      │  manufacturer guidelines for precise information.
+      └────────────────────────────────────────
+
+      Evidence reviews:
+        [EN][negative] en_0215301_0
+          "Not durable"
+        [EN][negative] en_0152718_0
+          "Too fragile"
+        [EN][negative] en_0943934_0
+          "Not durable"
+
+  [~] q010  ¿Hay reseñas positivas sobre la calidad del materi…
+      Question type : expected=product_review  got=sentiment_query  ✗
+      Aspect        : expected=quality  got=quality  ✓
+      Filter match  : ✓
+      Evidence      : 0 reviews  |  Confidence: 0.0%  |  Latency: 33748ms
+      Rewritten     : reseñas positivas calidad material
+
+      ┌─ RAG Answer (33748ms) ────────────────────
+      │  No relevant reviews found to answer your question.
+      │  Summary: No results found.
+      └────────────────────────────────────────
+
+      ┌─ LLM Direct Answer (6539ms) ───────────────
+      │  Sin información específica sobre un producto particular, es difícil
+      │  proporcionar reseñas positivas sobre la calidad del material. La
+      │  calidad del material puede variar según el uso, la marca y el cuidado.
+      │  Es recomendable leer reseñas de usuarios específicos o consultar
+      │  expertos en materiales para obtener opiniones más precisas.
+      └────────────────────────────────────────
+
+  [✓] q011  What do English reviews say about value for money?
+      Question type : expected=product_review  got=sentiment_query  ✗
+      Aspect        : expected=price  got=general  ✗
+      Filter match  : ✓
+      Evidence      : 4 reviews  |  Confidence: 95.0%  |  Latency: 100089ms
+      Rewritten     : value for money reviews
+
+      ┌─ RAG Answer (100089ms) ────────────────────
+      │  English reviews consistently criticize the product's value for money,
+      │  citing issues like rapid failure, poor quality, and defects. For
+      │  example, one reviewer states, 'not worth money for 1 month,' another
+      │  mentions 'What a waste of money,' and another calls it 'Junk. Won't
+      │  hold a charge anymore.' Multiple reviews highlight dissatisfaction
+      │  with the product's durability and performance compared to its cost.
+      │  Summary: English reviews strongly criticize the product's value for money due to poor quality and durability.
+      └────────────────────────────────────────
+
+      ┌─ LLM Direct Answer (8232ms) ───────────────
+      │  English reviews often discuss "value for money" by evaluating whether
+      │  the product or service offers sufficient quality, features, or
+      │  benefits relative to its price. Positive reviews might highlight that
+      │  it "deserves the price" or "justifies the cost," while negative
+      │  reviews may note that it "overpriced" or "not worth the money." The
+      │  perception of value can vary based on individual expectations and
+      └────────────────────────────────────────
+
+      Evidence reviews:
+        [EN][negative] en_0909483_0
+          "not worth money for 1 month"
+        [EN][negative] en_0718608_0
+          "What a waste of money"
+        [EN][negative] en_0993254_0
+          "Junk. Won't hold a charge anymore"
+
+  [~] q012  用户对售后服务有什么反馈？
+      Question type : expected=product_review  got=sentiment_query  ✗
+      Aspect        : expected=service  got=service  ✓
+      Filter match  : ✓
+      Evidence      : 0 reviews  |  Confidence: 0.0%  |  Latency: 57178ms
+      Rewritten     : 售后服务反馈
+
+      ┌─ RAG Answer (57178ms) ────────────────────
+      │  No relevant reviews found to answer your question.
+      │  Summary: No results found.
+      └────────────────────────────────────────
+
+      ┌─ LLM Direct Answer (7307ms) ───────────────
+      │  用户对售后服务的反馈通常集中在以下几个方面： 
+1. **响应速度**：部分用户反映客服响应延迟，影响体验。 
+2.
+      │  **问题解决效率**：部分问题解决周期较长，导致用户不满。 
+3. **服务质量**：售后人员专业度、沟通能力或态度可能影响满意度。 
+4.
+      │  **售后政策**：退换货流程、保修期限或额外费用（如运费）的透明度和合理性。
+      │  
+
+**建议**：企业可通过优化流程、提升培训、加强沟通渠道（如在线客服、APP等）来改善体验。
+      └────────────────────────────────────────
+
+  [✓] q013  Are there complaints about the product breaking ea…
+      Question type : expected=sentiment_query  got=sentiment_query  ✓
+      Aspect        : expected=durability  got=durability  ✓
+      Filter match  : ✓
+      Evidence      : 4 reviews  |  Confidence: 95.0%  |  Latency: 89618ms
+      Rewritten     : product breaks easily complaints
+
+      ┌─ RAG Answer (89618ms) ────────────────────
+      │  Multiple reviews indicate complaints about the product breaking
+      │  easily. Review 1 states 'Product defective and unsafe. Poor materials,
+      │  damaged after only weeks.' Review 4 mentions 'fell apart like other
+      │  reviewers have complained on the third cookie.' Review 5 notes 'Broke
+      │  an front of case came off often.' These issues suggest durability
+      │  problems.
+      │  Summary: Multiple negative reviews highlight product breakage and durability issues.
+      └────────────────────────────────────────
+
+      ┌─ LLM Direct Answer (6050ms) ───────────────
+      │  I don't have access to real-time customer reviews or feedback. For the
+      │  most accurate information, you might want to check customer reviews or
+      │  contact the product's customer support for detailed insights into
+      │  durability concerns.
+      └────────────────────────────────────────
+
+      Evidence reviews:
+        [EN][negative] en_0430092_0
+          "Product defective and unsafe. Poor materials, damaged after only weeks."
+        [EN][negative] en_0452000_0
+          "Very cheap material, ripped almost instantly"
+        [EN][negative] en_0019586_0
+          "Broke an front of case came off often"
+
+  [✓] q014  ¿Los usuarios recomiendan este producto?
+      Question type : expected=general  got=general  ✓
+      Aspect        : expected=general  got=general  ✓
+      Filter match  : ✗
+      Evidence      : 5 reviews  |  Confidence: 95.0%  |  Latency: 124748ms
+      Rewritten     : 
+
+      ┌─ RAG Answer (124748ms) ────────────────────
+      │  Los usuarios no recomiendan este producto. Las reseñas destacan
+      │  problemas como que el agua tiene un sabor y olor desagradable ('Water
+      │  tastes and smells like dirt!'), dificultades para usarlo ('very hard
+      │  to use'), y que no funciona correctamente ('doesn’t even work').
+      │  Varios usuarios advierten contra la compra con frases como 'Order at
+      │  your own risk' y 'Don’t buy, not worth it'.
+      │  Summary: Usuarios no recomiendan el producto debido a experiencias negativas.
+      └────────────────────────────────────────
+
+      ┌─ LLM Direct Answer (6522ms) ───────────────
+      │  No hay información disponible sobre si los usuarios recomiendan este
+      │  producto. Para obtener una respuesta precisa, se necesitaría acceso a
+      │  datos de evaluaciones o reseñas de usuarios.
+      └────────────────────────────────────────
+
+      Evidence reviews:
+        [EN][negative] en_0989762_1
+          "Water tastes and smells like dirt!"
+        [EN][negative] en_0252403_1
+          "Order at your own risk"
+        [EN][negative] en_0649955_0
+          "Don’t Buy, not worth it"
+
+  [✓] q015  What is the overall sentiment of reviews?
+      Question type : expected=general  got=sentiment_query  ✗
+      Aspect        : expected=general  got=general  ✓
+      Filter match  : ✓
+      Evidence      : 5 reviews  |  Confidence: 100.0%  |  Latency: 90954ms
+      Rewritten     : Amazon product reviews sentiment analysis
+
+      ┌─ RAG Answer (90954ms) ────────────────────
+      │  All retrieved reviews express strongly negative sentiments. Reviewers
+      │  criticize product quality, functionality, and customer service, using
+      │  phrases like 'piece of shit product,' 'cheaply made poorly constructed
+      │  tree,' and 'fucking waste of time.' Multiple reviews also mention
+      │  frustration with Amazon's handling of the product and refund process.
+      │  Summary: All reviews are negative, highlighting product defects, poor customer service, and dissatisfaction w
+      └────────────────────────────────────────
+
+      ┌─ LLM Direct Answer (7326ms) ───────────────
+      │  The overall sentiment of reviews depends on the specific reviews being
+      │  analyzed. If the reviews are predominantly positive, the sentiment is
+      │  positive; if mostly negative, it's negative; and if mixed, it's
+      │  neutral. Without specific data, it's impossible to determine the exact
+      │  sentiment. Analyzing reviews typically involves natural language
+      │  processing (NLP) to assess sentiment based on text content.
+      └────────────────────────────────────────
+
+      Evidence reviews:
+        [EN][negative] en_0589876_0
+          "It's a peice of shit product"
+        [EN][negative] en_0687188_0
+          "nothing like the picture!"
+        [EN][negative] en_0288965_0
+          "Very disappointed in Amazon"
+
+────────────────────────────────────────────────────────────
+END OF REPORT
+────────────────────────────────────────────────────────────

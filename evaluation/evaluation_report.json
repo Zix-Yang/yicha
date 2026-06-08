@@ -1,0 +1,1371 @@
+{
+  "meta": {
+    "timestamp": "2026-06-04T22:20:27.448Z",
+    "total_questions": 15,
+    "duration_ms": 1501515,
+    "endpoint": "http://localhost:3000"
+  },
+  "summary": {
+    "classification": {
+      "question_type_accuracy": 0.5333,
+      "aspect_accuracy": 0.8,
+      "question_type_macro_f1": 0.3789,
+      "aspect_macro_f1": 0.8379,
+      "question_type_per_class": {
+        "sentiment_query": {
+          "precision": 0.5833,
+          "recall": 1,
+          "f1": 0.7368,
+          "support": 7
+        },
+        "general": {
+          "precision": 0.3333,
+          "recall": 0.5,
+          "f1": 0.4,
+          "support": 2
+        },
+        "product_review": {
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "support": 6
+        }
+      },
+      "aspect_per_class": {
+        "quality": {
+          "precision": 1,
+          "recall": 1,
+          "f1": 1,
+          "support": 2
+        },
+        "general": {
+          "precision": 0.5714,
+          "recall": 1,
+          "f1": 0.7273,
+          "support": 4
+        },
+        "shipping": {
+          "precision": 1,
+          "recall": 1,
+          "f1": 1,
+          "support": 1
+        },
+        "service": {
+          "precision": 1,
+          "recall": 1,
+          "f1": 1,
+          "support": 2
+        },
+        "price": {
+          "precision": 1,
+          "recall": 0.3333,
+          "f1": 0.5,
+          "support": 3
+        },
+        "durability": {
+          "precision": 1,
+          "recall": 0.6667,
+          "f1": 0.8,
+          "support": 3
+        }
+      }
+    },
+    "retrieval": {
+      "evaluated_cases": 0,
+      "precision_at_5": 0,
+      "recall_at_20": 0,
+      "mrr": 0,
+      "ndcg_at_5": 0
+    },
+    "rerank": {
+      "avg_before_p5": 0,
+      "avg_after_p5": 0,
+      "avg_before_mrr": 0,
+      "avg_after_mrr": 0,
+      "avg_p5_delta": 0,
+      "avg_mrr_delta": 0
+    },
+    "generation": {
+      "avg_confidence": 0.5433,
+      "has_answer_rate": 0.6,
+      "has_evidence_rate": 0.6,
+      "avg_rouge_l": 0.0759,
+      "avg_rouge_l_direct": 0.1096
+    },
+    "evidence": {
+      "evaluated_cases": 0,
+      "avg_accuracy": 0
+    },
+    "tool_calling": {
+      "success_rate": 0.9,
+      "selection_accuracy": 1,
+      "parameter_accuracy": 1
+    },
+    "end_to_end": {
+      "success_rate": 0.5333,
+      "avg_latency_ms": 82549.0667,
+      "avg_llm_direct_latency_ms": 7069.4
+    }
+  },
+  "cases": [
+    {
+      "id": "q001",
+      "question": "What do users say about product quality?",
+      "expected_question_type": "sentiment_query",
+      "expected_aspect": "quality",
+      "actual_question_type": "sentiment_query",
+      "actual_aspect": "quality",
+      "actual_answer": "{\n  \"answer\": \"Users report significant issues with product quality, including defects, poor materials, and rapid deterioration. For example, one user stated the product was 'defective and unsafe. Poor materials, damaged after only weeks,' while another mentioned the item 'fell apart like other reviewers have complained on the third cookie.' Additional complaints include fuzzy materials that discolored quickly and hair that performed poorly despite being",
+      "actual_summary": "",
+      "actual_evidence_reviews": [],
+      "rewritten_queries": [
+        "product quality reviews",
+        "user feedback on quality",
+        "product quality comments"
+      ],
+      "llm_direct_answer": "Users often share feedback about product quality, highlighting factors like performance, durability, and customer service. Positive reviews might mention reliability, functionality, or satisfaction with the product's features. Negative feedback could address issues such as defects, poor craftsmanship, or inadequate customer support. Overall, opinions vary by product type and individual experiences, but common themes include expectations versus actual performance.",
+      "llm_direct_latency_ms": 6708,
+      "filter_match": true,
+      "evidence_count": 0,
+      "confidence": 0.5,
+      "latency_ms": 121780,
+      "rouge_l": 0.0759,
+      "rouge_l_direct": 0.1096,
+      "evidence_accuracy": null,
+      "e2e_success": false,
+      "tool_records": [
+        {
+          "tool": "queryRewrite",
+          "success": true,
+          "params_present": [
+            "question"
+          ],
+          "required_params": [
+            "question"
+          ]
+        },
+        {
+          "tool": "embedding",
+          "success": true,
+          "params_present": [
+            "text"
+          ],
+          "required_params": [
+            "text"
+          ]
+        },
+        {
+          "tool": "qdrantSearch",
+          "success": true,
+          "params_present": [
+            "vector",
+            "topK"
+          ],
+          "required_params": [
+            "vector",
+            "topK"
+          ]
+        },
+        {
+          "tool": "reranker",
+          "success": false,
+          "params_present": [
+            "query",
+            "candidates"
+          ],
+          "required_params": [
+            "query",
+            "candidates"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q002",
+      "question": "西班牙语差评里用户主要抱怨什么？",
+      "expected_question_type": "sentiment_query",
+      "expected_aspect": "general",
+      "actual_question_type": "sentiment_query",
+      "actual_aspect": "general",
+      "actual_answer": "No relevant reviews found to answer your question.",
+      "actual_summary": "No results found.",
+      "actual_evidence_reviews": [],
+      "rewritten_queries": [
+        "Spanish negative Amazon reviews main complaints",
+        "What are the common issues in Spanish product reviews with negative sentiment?",
+        "Spanish users' negative feedback on Amazon products"
+      ],
+      "llm_direct_answer": "在西班牙语差评中，用户通常会抱怨以下几点：  \n1. **发音困难**（如元音/辅音混淆、重音位置）；  \n2. **语法错误**（如时态、语态、介词使用）；  \n3. **词汇不准确**（如词性误用、词义混淆）；  \n4. **文化差异**（如俚语、习惯表达不符合本地习惯）；  \n5. **服务体验**（如沟通不畅、态度不佳）。  \n\n这些抱怨集中在语言学习或使用中的实际困难，而非语言本身。",
+      "llm_direct_latency_ms": 7664,
+      "filter_match": true,
+      "evidence_count": 0,
+      "confidence": 0,
+      "latency_ms": 37454,
+      "evidence_accuracy": null,
+      "e2e_success": false,
+      "tool_records": [
+        {
+          "tool": "queryRewrite",
+          "success": true,
+          "params_present": [
+            "question"
+          ],
+          "required_params": [
+            "question"
+          ]
+        },
+        {
+          "tool": "embedding",
+          "success": true,
+          "params_present": [
+            "text"
+          ],
+          "required_params": [
+            "text"
+          ]
+        },
+        {
+          "tool": "qdrantSearch",
+          "success": true,
+          "params_present": [
+            "vector",
+            "topK"
+          ],
+          "required_params": [
+            "vector",
+            "topK"
+          ]
+        },
+        {
+          "tool": "reranker",
+          "success": false,
+          "params_present": [
+            "query",
+            "candidates"
+          ],
+          "required_params": [
+            "query",
+            "candidates"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q003",
+      "question": "Are there any complaints about shipping speed?",
+      "expected_question_type": "sentiment_query",
+      "expected_aspect": "shipping",
+      "actual_question_type": "sentiment_query",
+      "actual_aspect": "shipping",
+      "actual_answer": "Yes, there are complaints about shipping speed. Review 1 mentions the item was not shipped by the promised day, with delays spanning multiple days. Review 2 states the item 'did not arrive on time' and notes poor customer service response. Review 5 highlights a 10-day delivery window that was not met.",
+      "actual_summary": "Multiple reviews cite delays in shipping speed and delivery timing issues.",
+      "actual_evidence_reviews": [
+        {
+          "review_id": "en_0206383_0",
+          "language": "en",
+          "label_text": "negative",
+          "quote": "Ordered 2 they shipped 1 promised by certain day, then the next day, then the next day"
+        },
+        {
+          "review_id": "en_0175780_0",
+          "language": "en",
+          "label_text": "negative",
+          "quote": "this item did not arrive on time"
+        },
+        {
+          "review_id": "en_0761924_0",
+          "language": "en",
+          "label_text": "negative",
+          "quote": "Had 10 days to deliver still not here"
+        }
+      ],
+      "rewritten_queries": [
+        "complaints about shipping speed",
+        "shipping speed issues",
+        "problems with shipping time"
+      ],
+      "llm_direct_answer": "Yes, complaints about shipping speed are common, especially for international orders. Factors like distance, weather, carrier efficiency, and logistics challenges can affect delivery times. Customers often cite delays due to unforeseen circumstances (e.g., storms, customs issues) or slower processing times. Many companies provide tracking and estimated delivery timelines to manage expectations.",
+      "llm_direct_latency_ms": 7213,
+      "filter_match": true,
+      "evidence_count": 3,
+      "confidence": 0.95,
+      "latency_ms": 83835,
+      "evidence_accuracy": null,
+      "e2e_success": true,
+      "tool_records": [
+        {
+          "tool": "queryRewrite",
+          "success": true,
+          "params_present": [
+            "question"
+          ],
+          "required_params": [
+            "question"
+          ]
+        },
+        {
+          "tool": "embedding",
+          "success": true,
+          "params_present": [
+            "text"
+          ],
+          "required_params": [
+            "text"
+          ]
+        },
+        {
+          "tool": "qdrantSearch",
+          "success": true,
+          "params_present": [
+            "vector",
+            "topK"
+          ],
+          "required_params": [
+            "vector",
+            "topK"
+          ]
+        },
+        {
+          "tool": "reranker",
+          "success": true,
+          "params_present": [
+            "query",
+            "candidates"
+          ],
+          "required_params": [
+            "query",
+            "candidates"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q004",
+      "question": "这个产品的耐用性怎么样？",
+      "expected_question_type": "product_review",
+      "expected_aspect": "durability",
+      "actual_question_type": "general",
+      "actual_aspect": "general",
+      "actual_answer": "The provided reviews do not specifically address the product's durability. They focus on issues like water quality, usability, and overall satisfaction but do not mention long-term durability.",
+      "actual_summary": "No reviews discuss the product's durability.",
+      "actual_evidence_reviews": [
+        {
+          "review_id": "en_0989762_1",
+          "language": "en",
+          "label_text": "negative",
+          "quote": "Water tastes and smells like dirt!"
+        },
+        {
+          "review_id": "en_0252403_1",
+          "language": "en",
+          "label_text": "negative",
+          "quote": "Order at your own risk"
+        },
+        {
+          "review_id": "en_0016438_0",
+          "language": "en",
+          "label_text": "negative",
+          "quote": "unhappy"
+        }
+      ],
+      "rewritten_queries": [
+        ""
+      ],
+      "llm_direct_answer": "产品的耐用性取决于其材质、制造工艺和使用环境。通常，优质产品会采用高强度材料（如不锈钢、工程塑料）并确保结构稳固。长期使用需避免极端温度、潮湿或腐蚀性环境，定期维护可延长寿命。具体表现需根据产品类型（如电子设备、家具或机械）而定。",
+      "llm_direct_latency_ms": 6711,
+      "filter_match": false,
+      "evidence_count": 3,
+      "confidence": 0,
+      "latency_ms": 117459,
+      "evidence_accuracy": null,
+      "e2e_success": false,
+      "tool_records": [
+        {
+          "tool": "queryRewrite",
+          "success": true,
+          "params_present": [
+            "question"
+          ],
+          "required_params": [
+            "question"
+          ]
+        },
+        {
+          "tool": "embedding",
+          "success": true,
+          "params_present": [
+            "text"
+          ],
+          "required_params": [
+            "text"
+          ]
+        },
+        {
+          "tool": "qdrantSearch",
+          "success": true,
+          "params_present": [
+            "vector",
+            "topK"
+          ],
+          "required_params": [
+            "vector",
+            "topK"
+          ]
+        },
+        {
+          "tool": "reranker",
+          "success": true,
+          "params_present": [
+            "query",
+            "candidates"
+          ],
+          "required_params": [
+            "query",
+            "candidates"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q005",
+      "question": "What are positive reviews saying about customer service?",
+      "expected_question_type": "sentiment_query",
+      "expected_aspect": "service",
+      "actual_question_type": "sentiment_query",
+      "actual_aspect": "service",
+      "actual_answer": "No relevant reviews found to answer your question.",
+      "actual_summary": "No results found.",
+      "actual_evidence_reviews": [],
+      "rewritten_queries": [
+        "positive customer service reviews",
+        "great customer service feedback",
+        "positive experiences with customer service"
+      ],
+      "llm_direct_answer": "Positive reviews often highlight aspects such as being treated with respect, resolving issues quickly, receiving effective solutions, and feeling valued. Customers also appreciate when agents demonstrate empathy, provide clear communication, and go above and beyond to ensure satisfaction. Additionally, successful problem resolution and a positive overall experience are common themes.",
+      "llm_direct_latency_ms": 6951,
+      "filter_match": true,
+      "evidence_count": 0,
+      "confidence": 0,
+      "latency_ms": 59842,
+      "evidence_accuracy": null,
+      "e2e_success": false,
+      "tool_records": [
+        {
+          "tool": "queryRewrite",
+          "success": true,
+          "params_present": [
+            "question"
+          ],
+          "required_params": [
+            "question"
+          ]
+        },
+        {
+          "tool": "embedding",
+          "success": true,
+          "params_present": [
+            "text"
+          ],
+          "required_params": [
+            "text"
+          ]
+        },
+        {
+          "tool": "qdrantSearch",
+          "success": true,
+          "params_present": [
+            "vector",
+            "topK"
+          ],
+          "required_params": [
+            "vector",
+            "topK"
+          ]
+        },
+        {
+          "tool": "reranker",
+          "success": false,
+          "params_present": [
+            "query",
+            "candidates"
+          ],
+          "required_params": [
+            "query",
+            "candidates"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q006",
+      "question": "¿Qué dicen los usuarios sobre el precio del producto?",
+      "expected_question_type": "product_review",
+      "expected_aspect": "price",
+      "actual_question_type": "general",
+      "actual_aspect": "general",
+      "actual_answer": "Los usuarios mencionan que el precio del producto es elevado, especialmente en combinación con problemas de funcionalidad. Por ejemplo, uno de los comentarios indica: 'Price is expensive and very hard to use and also doesn’t even work. Don’t bother buying this a waste of money' (Review 5).",
+      "actual_summary": "Los usuarios consideran que el precio es elevado y lo combinan con críticas sobre la calidad y funcionalidad del producto.",
+      "actual_evidence_reviews": [
+        {
+          "review_id": "en_0231298_0",
+          "language": "en",
+          "label_text": "negative",
+          "quote": "Price is expensive and very hard to use and also doesn’t even work."
+        }
+      ],
+      "rewritten_queries": [
+        "{\n  \"rewritten_queries\": [\"Opiniones de los usuarios sobre el precio del producto\", \"Comentarios"
+      ],
+      "llm_direct_answer": "Los comentarios sobre el precio de un producto varían según las opiniones de los usuarios, ya que la percepción de valor puede estar influenciada por factores como la calidad, la cantidad de opciones disponibles, el mercado y las expectativas del consumidor. Algunos podrían considerar el precio competitivo o asequible, mientras que otros lo vean demasiado elevado. La valoración depende de cómo se compara con otros productos o precios en el mercado.",
+      "llm_direct_latency_ms": 7460,
+      "filter_match": false,
+      "evidence_count": 1,
+      "confidence": 0.95,
+      "latency_ms": 117811,
+      "evidence_accuracy": null,
+      "e2e_success": true,
+      "tool_records": [
+        {
+          "tool": "queryRewrite",
+          "success": true,
+          "params_present": [
+            "question"
+          ],
+          "required_params": [
+            "question"
+          ]
+        },
+        {
+          "tool": "embedding",
+          "success": true,
+          "params_present": [
+            "text"
+          ],
+          "required_params": [
+            "text"
+          ]
+        },
+        {
+          "tool": "qdrantSearch",
+          "success": true,
+          "params_present": [
+            "vector",
+            "topK"
+          ],
+          "required_params": [
+            "vector",
+            "topK"
+          ]
+        },
+        {
+          "tool": "reranker",
+          "success": true,
+          "params_present": [
+            "query",
+            "candidates"
+          ],
+          "required_params": [
+            "query",
+            "candidates"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q007",
+      "question": "Do negative reviews mention packaging issues?",
+      "expected_question_type": "sentiment_query",
+      "expected_aspect": "general",
+      "actual_question_type": "sentiment_query",
+      "actual_aspect": "general",
+      "actual_answer": "Yes, multiple negative reviews explicitly mention packaging issues. For example, one reviewer stated 'Packing was horrible, they packed it in a bag. By the time I received it, it was crushed.' Another noted 'Very poorly packaged and handled during shipping' leading to a coffee pack bursting open. Poor packing is also cited as the cause of broken stems and missing items in the shipment.",
+      "actual_summary": "Negative reviews frequently cite packaging issues causing damage or missing items.",
+      "actual_evidence_reviews": [
+        {
+          "review_id": "en_0092612_0",
+          "language": "en",
+          "label_text": "negative",
+          "quote": "Packing was horrible, they packed it in a bag. By the time I received it, it was crushed."
+        },
+        {
+          "review_id": "en_0950622_0",
+          "language": "en",
+          "label_text": "negative",
+          "quote": "Very poorly packaged and handled during shipping. One of the packs of coffee had busted open"
+        },
+        {
+          "review_id": "en_0832890_0",
+          "language": "en",
+          "label_text": "negative",
+          "quote": "Stems were broken due to poor packing"
+        },
+        {
+          "review_id": "en_0762518_0",
+          "language": "en",
+          "label_text": "negative",
+          "quote": "the packaging had been opened and the soleplate cleaner was no where to be found"
+        }
+      ],
+      "rewritten_queries": [
+        "negative reviews packaging issues",
+        "packaging problems in negative reviews",
+        "do negative reviews talk about packaging issues?"
+      ],
+      "llm_direct_answer": "Negative reviews may or may not mention packaging issues, depending on the reviewer's experience. If packaging is a specific concern, it might be highlighted; otherwise, it could be overlooked. However, the presence of packaging issues in reviews is not guaranteed and depends on the individual's perspective. Always check specific reviews for direct mentions.",
+      "llm_direct_latency_ms": 6299,
+      "filter_match": true,
+      "evidence_count": 4,
+      "confidence": 0.95,
+      "latency_ms": 81428,
+      "evidence_accuracy": null,
+      "e2e_success": true,
+      "tool_records": [
+        {
+          "tool": "queryRewrite",
+          "success": true,
+          "params_present": [
+            "question"
+          ],
+          "required_params": [
+            "question"
+          ]
+        },
+        {
+          "tool": "embedding",
+          "success": true,
+          "params_present": [
+            "text"
+          ],
+          "required_params": [
+            "text"
+          ]
+        },
+        {
+          "tool": "qdrantSearch",
+          "success": true,
+          "params_present": [
+            "vector",
+            "topK"
+          ],
+          "required_params": [
+            "vector",
+            "topK"
+          ]
+        },
+        {
+          "tool": "reranker",
+          "success": true,
+          "params_present": [
+            "query",
+            "candidates"
+          ],
+          "required_params": [
+            "query",
+            "candidates"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q008",
+      "question": "用户对这款产品的价格满意吗？",
+      "expected_question_type": "sentiment_query",
+      "expected_aspect": "price",
+      "actual_question_type": "sentiment_query",
+      "actual_aspect": "price",
+      "actual_answer": "No relevant reviews found to answer your question.",
+      "actual_summary": "No results found.",
+      "actual_evidence_reviews": [],
+      "rewritten_queries": [
+        "product price satisfaction reviews",
+        "user satisfaction with product price",
+        "are users happy with product price"
+      ],
+      "llm_direct_answer": "根据市场调研和成本因素，产品定价合理，用户反馈总体满意。具体评价需参考实际使用体验和评论。",
+      "llm_direct_latency_ms": 7330,
+      "filter_match": true,
+      "evidence_count": 0,
+      "confidence": 0,
+      "latency_ms": 30986,
+      "evidence_accuracy": null,
+      "e2e_success": false,
+      "tool_records": [
+        {
+          "tool": "queryRewrite",
+          "success": true,
+          "params_present": [
+            "question"
+          ],
+          "required_params": [
+            "question"
+          ]
+        },
+        {
+          "tool": "embedding",
+          "success": true,
+          "params_present": [
+            "text"
+          ],
+          "required_params": [
+            "text"
+          ]
+        },
+        {
+          "tool": "qdrantSearch",
+          "success": true,
+          "params_present": [
+            "vector",
+            "topK"
+          ],
+          "required_params": [
+            "vector",
+            "topK"
+          ]
+        },
+        {
+          "tool": "reranker",
+          "success": false,
+          "params_present": [
+            "query",
+            "candidates"
+          ],
+          "required_params": [
+            "query",
+            "candidates"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q009",
+      "question": "How long does the product last according to reviews?",
+      "expected_question_type": "product_review",
+      "expected_aspect": "durability",
+      "actual_question_type": "sentiment_query",
+      "actual_aspect": "durability",
+      "actual_answer": "According to reviews, the product does not last long. One review mentions peaches popping after 'a few mins of inflating' (en_0215301_0), another states glass shattered 'only a bit over a month' of sporadic use (en_0152718_0), and another notes a mower's motor burned out after 'a months use' (en_0943934_0). A product damaged after 'a few weeks' in the dishwasher (en_0430092_0) and another that tore after 'a couple month' (en_0424685_0) also support this.",
+      "actual_summary": "Reviews consistently report the product failing within weeks to months.",
+      "actual_evidence_reviews": [
+        {
+          "review_id": "en_0215301_0",
+          "language": "en",
+          "label_text": "negative",
+          "quote": "Not durable"
+        },
+        {
+          "review_id": "en_0152718_0",
+          "language": "en",
+          "label_text": "negative",
+          "quote": "Too fragile"
+        },
+        {
+          "review_id": "en_0943934_0",
+          "language": "en",
+          "label_text": "negative",
+          "quote": "Not durable"
+        },
+        {
+          "review_id": "en_0430092_0",
+          "language": "en",
+          "label_text": "negative",
+          "quote": "Product defective and unsafe"
+        },
+        {
+          "review_id": "en_0424685_0",
+          "language": "en",
+          "label_text": "negative",
+          "quote": "No Durability"
+        }
+      ],
+      "rewritten_queries": [
+        "product durability reviews",
+        "how long does the product last reviews",
+        "product lifespan user feedback"
+      ],
+      "llm_direct_answer": "The lifespan of a product cannot be determined solely from reviews. Without knowing the specific product, it's impossible to provide an accurate answer. For general guidance, electronics like smartphones typically last 3-5 years, while mechanical items may vary based on usage and quality. Always check the product's specifications or manufacturer guidelines for precise information.",
+      "llm_direct_latency_ms": 7729,
+      "filter_match": true,
+      "evidence_count": 5,
+      "confidence": 0.95,
+      "latency_ms": 91306,
+      "evidence_accuracy": null,
+      "e2e_success": true,
+      "tool_records": [
+        {
+          "tool": "queryRewrite",
+          "success": true,
+          "params_present": [
+            "question"
+          ],
+          "required_params": [
+            "question"
+          ]
+        },
+        {
+          "tool": "embedding",
+          "success": true,
+          "params_present": [
+            "text"
+          ],
+          "required_params": [
+            "text"
+          ]
+        },
+        {
+          "tool": "qdrantSearch",
+          "success": true,
+          "params_present": [
+            "vector",
+            "topK"
+          ],
+          "required_params": [
+            "vector",
+            "topK"
+          ]
+        },
+        {
+          "tool": "reranker",
+          "success": true,
+          "params_present": [
+            "query",
+            "candidates"
+          ],
+          "required_params": [
+            "query",
+            "candidates"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q010",
+      "question": "¿Hay reseñas positivas sobre la calidad del material?",
+      "expected_question_type": "product_review",
+      "expected_aspect": "quality",
+      "actual_question_type": "sentiment_query",
+      "actual_aspect": "quality",
+      "actual_answer": "No relevant reviews found to answer your question.",
+      "actual_summary": "No results found.",
+      "actual_evidence_reviews": [],
+      "rewritten_queries": [
+        "reseñas positivas calidad material",
+        "opiniones buenas sobre el material",
+        "calidad del material reseñas positivas"
+      ],
+      "llm_direct_answer": "Sin información específica sobre un producto particular, es difícil proporcionar reseñas positivas sobre la calidad del material. La calidad del material puede variar según el uso, la marca y el cuidado. Es recomendable leer reseñas de usuarios específicos o consultar expertos en materiales para obtener opiniones más precisas.",
+      "llm_direct_latency_ms": 6539,
+      "filter_match": true,
+      "evidence_count": 0,
+      "confidence": 0,
+      "latency_ms": 33748,
+      "evidence_accuracy": null,
+      "e2e_success": false,
+      "tool_records": [
+        {
+          "tool": "queryRewrite",
+          "success": true,
+          "params_present": [
+            "question"
+          ],
+          "required_params": [
+            "question"
+          ]
+        },
+        {
+          "tool": "embedding",
+          "success": true,
+          "params_present": [
+            "text"
+          ],
+          "required_params": [
+            "text"
+          ]
+        },
+        {
+          "tool": "qdrantSearch",
+          "success": true,
+          "params_present": [
+            "vector",
+            "topK"
+          ],
+          "required_params": [
+            "vector",
+            "topK"
+          ]
+        },
+        {
+          "tool": "reranker",
+          "success": false,
+          "params_present": [
+            "query",
+            "candidates"
+          ],
+          "required_params": [
+            "query",
+            "candidates"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q011",
+      "question": "What do English reviews say about value for money?",
+      "expected_question_type": "product_review",
+      "expected_aspect": "price",
+      "actual_question_type": "sentiment_query",
+      "actual_aspect": "general",
+      "actual_answer": "English reviews consistently criticize the product's value for money, citing issues like rapid failure, poor quality, and defects. For example, one reviewer states, 'not worth money for 1 month,' another mentions 'What a waste of money,' and another calls it 'Junk. Won't hold a charge anymore.' Multiple reviews highlight dissatisfaction with the product's durability and performance compared to its cost.",
+      "actual_summary": "English reviews strongly criticize the product's value for money due to poor quality and durability.",
+      "actual_evidence_reviews": [
+        {
+          "review_id": "en_0909483_0",
+          "language": "en",
+          "label_text": "negative",
+          "quote": "not worth money for 1 month"
+        },
+        {
+          "review_id": "en_0718608_0",
+          "language": "en",
+          "label_text": "negative",
+          "quote": "What a waste of money"
+        },
+        {
+          "review_id": "en_0993254_0",
+          "language": "en",
+          "label_text": "negative",
+          "quote": "Junk. Won't hold a charge anymore"
+        },
+        {
+          "review_id": "en_0964290_1",
+          "language": "en",
+          "label_text": "negative",
+          "quote": "I'll spend twice the amount of time boxing up the whole useless thing"
+        }
+      ],
+      "rewritten_queries": [
+        "value for money reviews",
+        "price vs quality feedback",
+        "worth the cost opinions"
+      ],
+      "llm_direct_answer": "English reviews often discuss \"value for money\" by evaluating whether the product or service offers sufficient quality, features, or benefits relative to its price. Positive reviews might highlight that it \"deserves the price\" or \"justifies the cost,\" while negative reviews may note that it \"overpriced\" or \"not worth the money.\" The perception of value can vary based on individual expectations and comparisons to similar products or services.",
+      "llm_direct_latency_ms": 8232,
+      "filter_match": true,
+      "evidence_count": 4,
+      "confidence": 0.95,
+      "latency_ms": 100089,
+      "evidence_accuracy": null,
+      "e2e_success": true,
+      "tool_records": [
+        {
+          "tool": "queryRewrite",
+          "success": true,
+          "params_present": [
+            "question"
+          ],
+          "required_params": [
+            "question"
+          ]
+        },
+        {
+          "tool": "embedding",
+          "success": true,
+          "params_present": [
+            "text"
+          ],
+          "required_params": [
+            "text"
+          ]
+        },
+        {
+          "tool": "qdrantSearch",
+          "success": true,
+          "params_present": [
+            "vector",
+            "topK"
+          ],
+          "required_params": [
+            "vector",
+            "topK"
+          ]
+        },
+        {
+          "tool": "reranker",
+          "success": true,
+          "params_present": [
+            "query",
+            "candidates"
+          ],
+          "required_params": [
+            "query",
+            "candidates"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q012",
+      "question": "用户对售后服务有什么反馈？",
+      "expected_question_type": "product_review",
+      "expected_aspect": "service",
+      "actual_question_type": "sentiment_query",
+      "actual_aspect": "service",
+      "actual_answer": "No relevant reviews found to answer your question.",
+      "actual_summary": "No results found.",
+      "actual_evidence_reviews": [],
+      "rewritten_queries": [
+        "售后服务反馈",
+        "用户售后服务评价",
+        "售后体验如何"
+      ],
+      "llm_direct_answer": "用户对售后服务的反馈通常集中在以下几个方面：  \n1. **响应速度**：部分用户反映客服响应延迟，影响体验。  \n2. **问题解决效率**：部分问题解决周期较长，导致用户不满。  \n3. **服务质量**：售后人员专业度、沟通能力或态度可能影响满意度。  \n4. **售后政策**：退换货流程、保修期限或额外费用（如运费）的透明度和合理性。  \n\n**建议**：企业可通过优化流程、提升培训、加强沟通渠道（如在线客服、APP等）来改善体验。",
+      "llm_direct_latency_ms": 7307,
+      "filter_match": true,
+      "evidence_count": 0,
+      "confidence": 0,
+      "latency_ms": 57178,
+      "evidence_accuracy": null,
+      "e2e_success": false,
+      "tool_records": [
+        {
+          "tool": "queryRewrite",
+          "success": true,
+          "params_present": [
+            "question"
+          ],
+          "required_params": [
+            "question"
+          ]
+        },
+        {
+          "tool": "embedding",
+          "success": true,
+          "params_present": [
+            "text"
+          ],
+          "required_params": [
+            "text"
+          ]
+        },
+        {
+          "tool": "qdrantSearch",
+          "success": true,
+          "params_present": [
+            "vector",
+            "topK"
+          ],
+          "required_params": [
+            "vector",
+            "topK"
+          ]
+        },
+        {
+          "tool": "reranker",
+          "success": false,
+          "params_present": [
+            "query",
+            "candidates"
+          ],
+          "required_params": [
+            "query",
+            "candidates"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q013",
+      "question": "Are there complaints about the product breaking easily?",
+      "expected_question_type": "sentiment_query",
+      "expected_aspect": "durability",
+      "actual_question_type": "sentiment_query",
+      "actual_aspect": "durability",
+      "actual_answer": "Multiple reviews indicate complaints about the product breaking easily. Review 1 states 'Product defective and unsafe. Poor materials, damaged after only weeks.' Review 4 mentions 'fell apart like other reviewers have complained on the third cookie.' Review 5 notes 'Broke an front of case came off often.' These issues suggest durability problems.",
+      "actual_summary": "Multiple negative reviews highlight product breakage and durability issues.",
+      "actual_evidence_reviews": [
+        {
+          "review_id": "en_0430092_0",
+          "language": "en",
+          "label_text": "negative",
+          "quote": "Product defective and unsafe. Poor materials, damaged after only weeks."
+        },
+        {
+          "review_id": "en_0452000_0",
+          "language": "en",
+          "label_text": "negative",
+          "quote": "Very cheap material, ripped almost instantly"
+        },
+        {
+          "review_id": "en_0019586_0",
+          "language": "en",
+          "label_text": "negative",
+          "quote": "Broke an front of case came off often"
+        },
+        {
+          "review_id": "en_0203840_0",
+          "language": "en",
+          "label_text": "negative",
+          "quote": "fell apart like other reviewers have complained on the third cookie"
+        }
+      ],
+      "rewritten_queries": [
+        "product breaks easily complaints",
+        "complaints about product durability",
+        "product breaking issues"
+      ],
+      "llm_direct_answer": "I don't have access to real-time customer reviews or feedback. For the most accurate information, you might want to check customer reviews or contact the product's customer support for detailed insights into durability concerns.",
+      "llm_direct_latency_ms": 6050,
+      "filter_match": true,
+      "evidence_count": 4,
+      "confidence": 0.95,
+      "latency_ms": 89618,
+      "evidence_accuracy": null,
+      "e2e_success": true,
+      "tool_records": [
+        {
+          "tool": "queryRewrite",
+          "success": true,
+          "params_present": [
+            "question"
+          ],
+          "required_params": [
+            "question"
+          ]
+        },
+        {
+          "tool": "embedding",
+          "success": true,
+          "params_present": [
+            "text"
+          ],
+          "required_params": [
+            "text"
+          ]
+        },
+        {
+          "tool": "qdrantSearch",
+          "success": true,
+          "params_present": [
+            "vector",
+            "topK"
+          ],
+          "required_params": [
+            "vector",
+            "topK"
+          ]
+        },
+        {
+          "tool": "reranker",
+          "success": true,
+          "params_present": [
+            "query",
+            "candidates"
+          ],
+          "required_params": [
+            "query",
+            "candidates"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q014",
+      "question": "¿Los usuarios recomiendan este producto?",
+      "expected_question_type": "general",
+      "expected_aspect": "general",
+      "actual_question_type": "general",
+      "actual_aspect": "general",
+      "actual_answer": "Los usuarios no recomiendan este producto. Las reseñas destacan problemas como que el agua tiene un sabor y olor desagradable ('Water tastes and smells like dirt!'), dificultades para usarlo ('very hard to use'), y que no funciona correctamente ('doesn’t even work'). Varios usuarios advierten contra la compra con frases como 'Order at your own risk' y 'Don’t buy, not worth it'.",
+      "actual_summary": "Usuarios no recomiendan el producto debido a experiencias negativas.",
+      "actual_evidence_reviews": [
+        {
+          "review_id": "en_0989762_1",
+          "language": "en",
+          "label_text": "negative",
+          "quote": "Water tastes and smells like dirt!"
+        },
+        {
+          "review_id": "en_0252403_1",
+          "language": "en",
+          "label_text": "negative",
+          "quote": "Order at your own risk"
+        },
+        {
+          "review_id": "en_0649955_0",
+          "language": "en",
+          "label_text": "negative",
+          "quote": "Don’t Buy, not worth it"
+        },
+        {
+          "review_id": "en_0231298_0",
+          "language": "en",
+          "label_text": "negative",
+          "quote": "Don’t bother buying this a waste of money"
+        },
+        {
+          "review_id": "en_0016438_0",
+          "language": "en",
+          "label_text": "negative",
+          "quote": "unhappy"
+        }
+      ],
+      "rewritten_queries": [
+        ""
+      ],
+      "llm_direct_answer": "No hay información disponible sobre si los usuarios recomiendan este producto. Para obtener una respuesta precisa, se necesitaría acceso a datos de evaluaciones o reseñas de usuarios.",
+      "llm_direct_latency_ms": 6522,
+      "filter_match": false,
+      "evidence_count": 5,
+      "confidence": 0.95,
+      "latency_ms": 124748,
+      "evidence_accuracy": null,
+      "e2e_success": true,
+      "tool_records": [
+        {
+          "tool": "queryRewrite",
+          "success": true,
+          "params_present": [
+            "question"
+          ],
+          "required_params": [
+            "question"
+          ]
+        },
+        {
+          "tool": "embedding",
+          "success": true,
+          "params_present": [
+            "text"
+          ],
+          "required_params": [
+            "text"
+          ]
+        },
+        {
+          "tool": "qdrantSearch",
+          "success": true,
+          "params_present": [
+            "vector",
+            "topK"
+          ],
+          "required_params": [
+            "vector",
+            "topK"
+          ]
+        },
+        {
+          "tool": "reranker",
+          "success": true,
+          "params_present": [
+            "query",
+            "candidates"
+          ],
+          "required_params": [
+            "query",
+            "candidates"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q015",
+      "question": "What is the overall sentiment of reviews?",
+      "expected_question_type": "general",
+      "expected_aspect": "general",
+      "actual_question_type": "sentiment_query",
+      "actual_aspect": "general",
+      "actual_answer": "All retrieved reviews express strongly negative sentiments. Reviewers criticize product quality, functionality, and customer service, using phrases like 'piece of shit product,' 'cheaply made poorly constructed tree,' and 'fucking waste of time.' Multiple reviews also mention frustration with Amazon's handling of the product and refund process.",
+      "actual_summary": "All reviews are negative, highlighting product defects, poor customer service, and dissatisfaction with Amazon's handling.",
+      "actual_evidence_reviews": [
+        {
+          "review_id": "en_0589876_0",
+          "language": "en",
+          "label_text": "negative",
+          "quote": "It's a peice of shit product"
+        },
+        {
+          "review_id": "en_0687188_0",
+          "language": "en",
+          "label_text": "negative",
+          "quote": "nothing like the picture!"
+        },
+        {
+          "review_id": "en_0288965_0",
+          "language": "en",
+          "label_text": "negative",
+          "quote": "Very disappointed in Amazon"
+        },
+        {
+          "review_id": "en_0339056_0",
+          "language": "en",
+          "label_text": "negative",
+          "quote": "I recommend getting a Samsung or Apple tablet"
+        },
+        {
+          "review_id": "en_0406527_0",
+          "language": "en",
+          "label_text": "negative",
+          "quote": "I am so disappointed with the item I received"
+        }
+      ],
+      "rewritten_queries": [
+        "Amazon product reviews sentiment analysis",
+        "Overall customer sentiment for Amazon products",
+        "What is the sentiment of Amazon product reviews?"
+      ],
+      "llm_direct_answer": "The overall sentiment of reviews depends on the specific reviews being analyzed. If the reviews are predominantly positive, the sentiment is positive; if mostly negative, it's negative; and if mixed, it's neutral. Without specific data, it's impossible to determine the exact sentiment. Analyzing reviews typically involves natural language processing (NLP) to assess sentiment based on text content.",
+      "llm_direct_latency_ms": 7326,
+      "filter_match": true,
+      "evidence_count": 5,
+      "confidence": 1,
+      "latency_ms": 90954,
+      "evidence_accuracy": null,
+      "e2e_success": true,
+      "tool_records": [
+        {
+          "tool": "queryRewrite",
+          "success": true,
+          "params_present": [
+            "question"
+          ],
+          "required_params": [
+            "question"
+          ]
+        },
+        {
+          "tool": "embedding",
+          "success": true,
+          "params_present": [
+            "text"
+          ],
+          "required_params": [
+            "text"
+          ]
+        },
+        {
+          "tool": "qdrantSearch",
+          "success": true,
+          "params_present": [
+            "vector",
+            "topK"
+          ],
+          "required_params": [
+            "vector",
+            "topK"
+          ]
+        },
+        {
+          "tool": "reranker",
+          "success": true,
+          "params_present": [
+            "query",
+            "candidates"
+          ],
+          "required_params": [
+            "query",
+            "candidates"
+          ]
+        }
+      ]
+    }
+  ]
+}
